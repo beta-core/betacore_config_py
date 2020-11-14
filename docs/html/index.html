@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting started &mdash; betacore configuration 1.0.0rc1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="betacore configuration 1.0.0rc1 documentation" href="#"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> betacore configuration
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0rc1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <!-- Local TOC -->
+                <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Getting started</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#command">Command</a></li>
+<li><a class="reference internal" href="#sample-py">sample.py</a></li>
+<li><a class="reference internal" href="#test-yml">test.yml</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-betacore.config.config">Classes</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">betacore configuration</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Getting started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to betacore configuration’s documentation!</p>
+<p>The objective is to move out some settings for python application into configuration file(s).
+<code class="xref py py-const docutils literal notranslate"><span class="pre">EnvironmentAdapter</span></code> allows for simple conversion of environment variables.</p>
+<p>This allows yaml with <cite>text: ${ENV_VAR}</cite> to be replaced with <cite>text: cool</cite> assuming
+<cite>ENV_VAR</cite> is environment variables with the value of cool</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p><cite>pip3 install betacore_config</cite></p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="command">
+<h3>Command<a class="headerlink" href="#command" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">TEST_ENV</span><span class="o">=</span><span class="s1">&#39;some text&#39;</span>
+python3 sample.py --config test.yml
+</pre></div>
+</div>
+</div>
+<div class="section" id="sample-py">
+<h3>sample.py<a class="headerlink" href="#sample-py" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">betacore.config</span> <span class="kn">import</span> <span class="n">YamlConfiguration</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">()</span>
+
+   <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Process some integers.&#39;</span><span class="p">)</span>
+   <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--config&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;configuration file location&#39;</span><span class="p">)</span>
+   <span class="n">args</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_known_args</span><span class="p">()</span>
+
+
+   <span class="n">config</span> <span class="o">=</span> <span class="n">YamlConfiguration</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+   <span class="c1"># Note this will be the first section of the yml file</span>
+   <span class="c1">#      a section is split up by using: ---</span>
+   <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">config</span><span class="p">()</span>
+   <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="test-yml">
+<h3>test.yml<a class="headerlink" href="#test-yml" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nn">---</span>
+
+<span class="nt">test</span><span class="p">:</span>
+<span class="nt">list</span><span class="p">:</span>
+   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">a</span>
+   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">b</span>
+   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">c</span>
+<span class="nt">env</span><span class="p">:</span>
+   <span class="nt">environment_variable</span><span class="p">:</span> <span class="s">&#39;TEST_ENV&#39;</span>
+<span class="nt">level</span><span class="p">:</span>
+   <span class="nt">two</span><span class="p">:</span>
+      <span class="nt">a</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">a</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+</div>
+<div class="section" id="module-betacore.config.config">
+<span id="classes"></span><h1>Classes<a class="headerlink" href="#module-betacore.config.config" title="Permalink to this headline">¶</a></h1>
+<p>Allow for various configuration options in python</p>
+<dl class="py class">
+<dt id="betacore.config.config.EnvironmentAdapter">
+<em class="property">class </em><code class="sig-prename descclassname">betacore.config.config.</code><code class="sig-name descname">EnvironmentAdapter</code><a class="headerlink" href="#betacore.config.config.EnvironmentAdapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Configuration that will swap out meta variables with environment variables values</p>
+<dl class="py attribute">
+<dt id="betacore.config.config.EnvironmentAdapter.DEFALT_KEY">
+<code class="sig-name descname">DEFALT_KEY</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></em><em class="property"> = 'environment_variable'</em><a class="headerlink" href="#betacore.config.config.EnvironmentAdapter.DEFALT_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="betacore.config.config.EnvironmentAdapter.DEFALT_VALUE">
+<code class="sig-name descname">DEFALT_VALUE</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></em><em class="property"> = '*****'</em><a class="headerlink" href="#betacore.config.config.EnvironmentAdapter.DEFALT_VALUE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="betacore.config.config.EnvironmentAdapter.inline_replace">
+<em class="property">static </em><code class="sig-name descname">inline_replace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><a class="headerlink" href="#betacore.config.config.EnvironmentAdapter.inline_replace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replacing ${ENV} with value
+:param line str: will replace any <cite>${…}</cite> values with variable
+:return: return with swapped value
+:rtype: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="betacore.config.config.EnvironmentAdapter.replace">
+<em class="property">static </em><code class="sig-name descname">replace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a><a class="headerlink" href="#betacore.config.config.EnvironmentAdapter.replace" title="Permalink to this definition">¶</a></dt>
+<dd><p>resolve a dict config with environment variables
+the will inject the values for environment variable: ‘name’
+using os.getenv(‘name’)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="betacore.config.config.YamlConfiguration">
+<em class="property">class </em><code class="sig-prename descclassname">betacore.config.config.</code><code class="sig-name descname">YamlConfiguration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">yaml_file</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#betacore.config.config.YamlConfiguration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#betacore.config.config.EnvironmentAdapter" title="betacore.config.config.EnvironmentAdapter"><code class="xref py py-class docutils literal notranslate"><span class="pre">betacore.config.config.EnvironmentAdapter</span></code></a></p>
+<p>Load Yaml Configuration</p>
+<dl class="py method">
+<dt id="betacore.config.config.YamlConfiguration.config">
+<code class="sig-name descname">config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">safe</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a><a class="headerlink" href="#betacore.config.config.YamlConfiguration.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the configuration file
+:param section str: return a section of the config
+:param safe bool: return the configuration unaltered
+:param Optional[int] index: index of yaml document you want to read from,                                         if None will use <code class="xref py py-const docutils literal notranslate"><span class="pre">self.index</span></code>
+:return: yaml configuration as a dictionary
+:rtype: dict</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="betacore.config.config.YamlConfiguration.data">
+<code class="sig-name descname">data</code><em class="property">: List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a><span class="p">]</span></em><a class="headerlink" href="#betacore.config.config.YamlConfiguration.data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="betacore.config.config.YamlConfiguration.index">
+<code class="sig-name descname">index</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></em><a class="headerlink" href="#betacore.config.config.YamlConfiguration.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="betacore.config.config.YamlConfiguration.load">
+<em class="property">static </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">yaml_file</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a><span class="p">]</span><a class="headerlink" href="#betacore.config.config.YamlConfiguration.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the yaml file into python
+:return: list of all yaml configs
+:rtype: list
+:raise FileNotFoundError: yaml file could not be found on disk
+:raise yaml.error.YAMLError: yaml file is malformed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="betacore.config.config.YamlConfiguration.set_active_index">
+<code class="sig-name descname">set_active_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#betacore.config.config.YamlConfiguration.set_active_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set active index</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="betacore.config.config.YamlConfiguration.valid_index">
+<code class="sig-name descname">valid_index</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#betacore.config.config.YamlConfiguration.valid_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if index is in range</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Brandon Bluemner.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Sphinx-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.0rc1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

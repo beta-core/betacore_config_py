@@ -1,0 +1,5 @@
+# Test simple replace of environment_variable
+---
+test:
+    env:
+        environment_variable: 'TEST_ENV'

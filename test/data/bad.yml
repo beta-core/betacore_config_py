@@ -1,0 +1,7 @@
+---
+
+# These are settings for uvicorn
+uvicorn:
+    - test:
+    - test:
+ :

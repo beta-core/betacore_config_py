@@ -1,0 +1,14 @@
+---
+
+test:
+  list:
+    - a
+    - b
+    - c
+  env:
+    environment_variable: 'TEST_ENV'
+  level:
+    two:
+      a: a
+
+---
