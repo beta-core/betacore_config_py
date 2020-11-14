@@ -55,14 +55,15 @@ doc-refresh:
 	sphinx-apidoc -f -P -o $(doc_source)/source/ $(namespace)
 
 doc-web:
-	sphinx-build -M html $(doc_source)/source/ $(doc_target)
+	sphinx-build -M html $(doc_source)/source/ $(doc_source)/dist
+	cp -a $(doc_source)/dist/html/. $(doc_target)/
 
 build:
 	python3 setup.py sdist bdist_wheel
 
 # Creates a documentation web server on port
 docd:
-	python3 -m http.server $(doc_web_port) --bind $(doc_web_bind) --directory $(doc_target)/html
+	python3 -m http.server $(doc_web_port) --bind $(doc_web_bind) --directory $(doc_target)/
 
 coveraged:
 	python3 -m http.server $(coverage_web_port) --bind $(coverage_web_bind) --directory $(doc_target)/coverage
